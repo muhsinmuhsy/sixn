@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'header.html' %} 
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    {% include 'navbar.html' %}
+    <div class="col-12 ">
+        {% include 'alert.html' %}
+       
+        <div class="d-flex justify-content-end pb-5">
+            <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="{% url 'brand-add' %}">Add Brand</a>
+        </div>
+        <div class="row">
+            {% for brand in brands %}
+                <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+                    <div class="card card-blog card-plain">
+                        <div class="card-header p-0 mt-n4 mx-3">
+                            <a class="d-block shadow-xl border-radius-xl">
+                                {% if brand.image %}
+                                    <img src="{{ brand.image.url }}" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl" style="height: 250px;
+                                    width: 100%;
+                                    object-fit: cover;">
+                                {% else %}
+                                    <img src="{% static 'assets/img/home-decor-1.jpg' %}" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="card-body p-3">
+                            
+                            <a href="javascript:;">
+                                <h5>
+                                    {{ brand.name }}
+                                </h5>
+                            </a>
+                            
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <a href="{% url 'product-brand-list' brand.id %}">
+                                    <button type="button" class="btn btn-outline-primary btn-sm mb-0">View Product</button>
+                                </a>
+                                <div class="avatar-group mt-2">
+                                    <a class="btn btn-link text-dark px-3 mb-0" href="{% url 'brand-edit' brand.id %}"><i class="material-icons text-sm me-2">edit</i>Edit</a>
+                                    
+                                    
+                                    <a class="btn btn-link text-danger px-1 mb-0" href="{% url 'brand-delete' brand.id %}" onclick="return confirm('Do you want to delite this?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor%}
+            
+        </div>
+    </div>
+</main>
+{% endblock content %}

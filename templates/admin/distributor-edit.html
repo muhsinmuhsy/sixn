@@ -1,0 +1,354 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'header.html' %} 
+
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    
+    {% include 'navbar.html' %}
+
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card my-4">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">Fill the form</h6>
+                    </div>
+                    </div>
+                    <div class="card-body px-0 pb-2">
+                        
+                        {% include 'alert.html' %}
+                        <form action="{% url 'distributor-edit' distributor.id %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="text" value="{{ distributor.user.first_name}}" placeholder="First Name" name="first_name" class="form-control" required required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+
+                                            <input type="text" name="last_name" value="{{ distributor.user.last_name}}" class="form-control" placeholder="Last Name" required required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <input type="file" name="image" accept="image/*" class="form-control"  />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+
+                                            <input type="text" name="place" value="{{ distributor.user.place }}" placeholder="PLace" class="form-control" required required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <input type="email" placeholder="email" name="email" value="{{ distributor.user.email }}" class="form-control" required required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <input type="text" name="phone" value="{{ distributor.user.phone }}" placeholder="Phone Number" class="form-control" required required>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    
+
+
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <input type="text"  name="blood_group" placeholder="Blood Group" value="{{ distributor.blood_group }}"  class="form-control" required required>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+
+                                            <input type="text" class="form-control" required name="whatsapp_number" placeholder="Whatsapp Number" value="{{ distributor.whatsapp_number }}">
+                                        </div>
+                                    </div>
+
+                                    
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-static mb-4">
+                                            <label for="exampleFormControlSelect1" class="ms-0">Gender</label>
+                                            <select class="form-control" required name="gender" id="exampleFormControlSelect1">
+                                               
+                                                <option value="Male" {% if distributor.gender == "Male" %}selected{% endif %}>Male</option>
+                                                <option value="Female" {% if distributor.gender == "Female" %}selected{% endif %}>Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                   
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-static my-3">
+                                            <label>Date of Birth</label>
+                                            <input type="date" class="form-control" required name="date_of_birth" value="{{ distributor.date_of_birth|date:'Y-m-d' }}"> 
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+
+                                            <input type="text" class="form-control" required name="address_one" placeholder="Address Line 1" value="{{ distributor.address_one }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                           
+                                            <input type="text" class="form-control" required name="address_two" placeholder="Address Line 2" value="{{ distributor.address_two }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                          
+                                            <input type="text" class="form-control" required name="city" placeholder="City" value="{{ distributor.city }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="text" class="form-control" required name="pincode" placeholder="Pincode" value="{{ distributor.pincode }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="text" class="form-control" required name="district" placeholder="District" value="{{ distributor.district }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6"></div>
+                                    
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-static mb-4">
+                                            <label for="exampleFormControlSelect1" class="ms-0">Education</label>
+                                            <select class="form-control" required name="education" id="exampleFormControlSelect1">
+                                                <option value="SSLC">SSLC</option>
+                                                <option value="Plus Two">Plus Two</option>
+                                                <option value="Degree">Degree</option>
+                                                <option value="PG">PG</option>
+
+                                                <option value="SSLC" {% if distributor.education == "SSLC" %}selected{% endif %}>SSLC</option>
+                                                <option value="Plus Two" {% if distributor.education == "Plus Two" %}selected{% endif %}>Plus Two</option>
+                                                <option value="Degree" {% if distributor.education == "Degree" %}selected{% endif %}>Degree</option>
+                                                <option value="PG" {% if distributor.education == "PG" %}selected{% endif %}>PG</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="education_description"></label>
+                                            <textarea class="form-control" placeholder="Education Description" required name="education_description">
+                                                {{ distributor.education_description }}
+                                            </textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="text" class="form-control" required name="father_name" placeholder="Father's Name" value="{{ distributor.father_name }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="text" class="form-control" required name="father_number" placeholder="Father's Number" value="{{ distributor.father_number }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="text" class="form-control" required name="father_job" placeholder="Father's Job" value="{{ distributor.father_job }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                           
+                                            <input type="text" class="form-control" required name="mother_name" placeholder="Father's Name" value="{{ distributor.mother_name }}"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                           
+                                            <input type="text" class="form-control" required name="mother_number" placeholder="Father's Number" value="{{ distributor.mother_number }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="text" class="form-control" required name="mother_job" placeholder="Father's Job" value="{{ distributor.mother_job }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                          
+                                            <input type="text" class="form-control" required name="friend_one_name" placeholder="Friend 1 Name" value="{{ distributor.friend_one_name }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="text" class="form-control" required name="friend_one_number" placeholder="Friend 1 Number" value="{{ distributor.friend_one_number }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="text" class="form-control" required name="friend_one_job" placeholder="Friend 1 Job" value="{{ distributor.friend_one_job }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                           
+                                            <input type="text" class="form-control" required name="friend_two_name" placeholder="Friend 1 Name" value="{{ distributor.friend_two_name }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="text" class="form-control" required name="friend_two_number" placeholder="Friend 1 Number" value="{{ distributor.friend_two_number }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="text" class="form-control" required name="friend_two_job" placeholder="Friend 1 Job" value="{{ distributor.friend_two_job }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="text" class="form-control" required name="distribution_area" placeholder="Distribution Area" value="{{ distributor.distribution_area }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6"></div>
+                                    
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="aadhaar_number">Aadhaar Number</label>
+                                        <div class="input-group input-group-outline mb-4">
+                                            <input type="text" class="form-control" required name="aadhaar_number" placeholder="Distribution Area" value="{{ distributor.aadhaar_number }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="aadhaar_image">Aadhaar Image</label>
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="file" class="form-control"  name="aadhaar_image">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="pan_card_number">PAN Card Number</label>
+                                        <div class="input-group input-group-outline mb-4">
+                                           
+                                            <input type="text" class="form-control" required name="pan_card_number" placeholder="PAN Card Number" value="{{ distributor.pan_card_number }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="pan_card_image">PAN Card Image</label>
+                                        <div class="input-group input-group-outline mb-4">
+                                           
+                                            <input type="file" class="form-control"  name="pan_card_image">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                          
+                                            <input type="text" class="form-control"  name="bank_name" placeholder="Bank Name" value="{{ distributor.bank_name }}" >
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+
+                                            <input type="text" class="form-control"  name="bank_branch_name" placeholder="Bank Branch Name" value="{{ distributor.bank_branch_name }}" >
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="text" class="form-control"  name="bank_holder_name" placeholder="Bank Holder Name" value="{{ distributor.bank_holder_name }}" >
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                           
+                                            <input type="text" class="form-control"  name="bank_account_number" placeholder="Bank Account Number" value="{{ distributor.bank_account_number }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                           
+                                            <input type="text" class="form-control"  name="bank_ifc_code" placeholder="Bank IFC Code" value="{{ distributor.bank_ifc_code }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        
+                                    </div>
+
+                                   
+
+
+
+
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</main>
+
+{% endblock content %}

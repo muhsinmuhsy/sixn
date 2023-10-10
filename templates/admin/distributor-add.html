@@ -1,0 +1,366 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'header.html' %} 
+
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    
+    {% include 'navbar.html' %}
+
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card my-4">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">Fill the form</h6>
+                    </div>
+                    </div>
+                    <div class="card-body px-0 pb-2">
+                        
+                        {% include 'alert.html' %}
+                        <form action="{% url 'distributor-add' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label">First Name</label>
+                                            <input type="text" name="first_name" class="form-control" required required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label">Last Name</label>
+                                            <input type="text" name="last_name" class="form-control" required required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <input type="file" name="image" accept="image/*" class="form-control" required  />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label">Place</label>
+                                            <input type="text" name="place" class="form-control" required required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label">email</label>
+                                            <input type="email" name="email" class="form-control" required required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label">Phone Number</label>
+                                            <input type="text" name="phone" class="form-control" required required>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    
+
+
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label">Blood Group</label>
+                                            <input type="text" name="blood_group" class="form-control" required required>
+                                        </div>
+                                    </div>
+
+                                    
+                                    
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="whatsapp_number">WhatsApp Number</label>
+                                            <input type="text" class="form-control" required name="whatsapp_number">
+                                        </div>
+                                    </div>
+
+                                    
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-static mb-4">
+                                            <label for="exampleFormControlSelect1" class="ms-0">Gender</label>
+                                            <select class="form-control" required name="gender" id="exampleFormControlSelect1">
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                   
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-static my-3">
+                                            <label>Date of Birth</label>
+                                            <input type="date" class="form-control" required name="date_of_birth"> 
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="address_one">Address Line 1</label>
+                                            <input type="text" class="form-control" required name="address_one">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="address_two">Address Line 2</label>
+                                            <input type="text" class="form-control" required name="address_two">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="city">City</label>
+                                            <input type="text" class="form-control" required name="city">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="pincode">Pincode</label>
+                                            <input type="text" class="form-control" required name="pincode">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="district">District</label>
+                                            <input type="text" class="form-control" required name="district">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6"></div>
+                                    
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-static mb-4">
+                                            <label for="exampleFormControlSelect1" class="ms-0">Education</label>
+                                            <select class="form-control" required name="education" id="exampleFormControlSelect1">
+                                                <option value="SSLC">SSLC</option>
+                                                <option value="Plus Two">Plus Two</option>
+                                                <option value="Degree">Degree</option>
+                                                <option value="PG">PG</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="education_description"></label>
+                                            <textarea class="form-control" placeholder="Education Description" required name="education_description"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="father_name">Father's Name</label>
+                                            <input type="text" class="form-control" required name="father_name">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="father_number">Father's Phone Number</label>
+                                            <input type="text" class="form-control" required name="father_number">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="father_job">Father's Job</label>
+                                            <input type="text" class="form-control" required name="father_job">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="mother_name">Mother's Name</label>
+                                            <input type="text" class="form-control" required name="mother_name">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="mother_number">Mother's Phone Number</label>
+                                            <input type="text" class="form-control" required name="mother_number">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="mother_job">Mother's Job</label>
+                                            <input type="text" class="form-control" required name="mother_job">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="friend_one_name">Friend 1 Name</label>
+                                            <input type="text" class="form-control" required name="friend_one_name">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="friend_one_number">Friend 1 Phone Number</label>
+                                            <input type="text" class="form-control" required name="friend_one_number">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="friend_one_job">Friend 1 Job</label>
+                                            <input type="text" class="form-control" required name="friend_one_job">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="friend_two_name">Friend 2 Name</label>
+                                            <input type="text" class="form-control" required name="friend_two_name">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="friend_two_number">Friend 2 Phone Number</label>
+                                            <input type="text" class="form-control" required name="friend_two_number">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="friend_two_job">Friend 2 Job</label>
+                                            <input type="text" class="form-control" required name="friend_two_job">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="distribution_area">Distribution Area</label>
+                                            <input type="text" class="form-control" required name="distribution_area">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6"></div>
+                                    
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="aadhaar_number">Aadhaar Number</label>
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="text" class="form-control" required name="aadhaar_number">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="aadhaar_image">Aadhaar Image</label>
+                                        <div class="input-group input-group-outline mb-4">
+                                            
+                                            <input type="file" class="form-control" required name="aadhaar_image">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="pan_card_number">PAN Card Number</label>
+                                        <div class="input-group input-group-outline mb-4">
+                                           
+                                            <input type="text" class="form-control" required name="pan_card_number">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="pan_card_image">PAN Card Image</label>
+                                        <div class="input-group input-group-outline mb-4">
+                                           
+                                            <input type="file" class="form-control" required name="pan_card_image">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="bank_name">Bank Name</label>
+                                            <input type="text" class="form-control"  name="bank_name">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="bank_branch_name">Bank Branch Name</label>
+                                            <input type="text" class="form-control"  name="bank_branch_name">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="bank_holder_name">Bank Holder Name</label>
+                                            <input type="text" class="form-control"  name="bank_holder_name">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="bank_account_number">Bank Account Number</label>
+                                            <input type="text" class="form-control"  name="bank_account_number">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label" for="bank_ifc_code">Bank IFC Code</label>
+                                            <input type="text" class="form-control"  name="bank_ifc_code">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-dynamic mb-4">
+                                            <label class="form-label">Username</label>
+                                            <input type="text" name="username" required class="form-control" >
+                                          
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-dynamic mb-4">
+                                            <label class="form-label">Password</label>
+                                            <input type="password" name="password" required class="form-control" >
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</main>
+
+{% endblock content %}

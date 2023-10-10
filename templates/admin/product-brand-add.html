@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'header.html' %} 
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    {% include 'navbar.html' %}
+
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card my-4">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">Fill the form</h6>
+                    </div>
+                    </div>
+                    <div class="card-body px-0 pb-2">
+                        
+                        {% include 'alert.html' %}
+                        <form action="{% url 'product-brand-add' brand.id %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label">Name</label>
+                                            <input type="text" name="name" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <input type="file" name="image" accept="image/*" class="form-control"  />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label">MRP</label>
+                                            <input type="number" step="0.01" class="form-control" name="mrp">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label">Purchase Rate</label>
+                                            <input type="number" step="0.01" class="form-control" name="purchase_rate">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label">Purchase quantity</label>
+                                            <input type="number" step="0.01" class="form-control" name="purchase_quantity">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <label class="form-label">Selling price</label>
+                                            <input type="number" step="0.01" class="form-control" name="selling_price">
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+
+{% endblock content %}

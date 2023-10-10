@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'header.html' %} 
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    {% include 'navbar.html' %}
+    {% include 'alert.html' %}
+
+    <div class="d-flex justify-content-end pb-2">
+        <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="{% url 'product-brand-add' brand.id %}">Add Product</a>
+    </div>
+
+    <div class="card">
+        <div class="table-responsive">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">name</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">mrp</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Purchase Rate</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Purchase Quantity</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Selling Price</th>
+                <th class="text-secondary opacity-7"></th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              {% for product in products %}
+                <tr>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div>
+                        {% if product.image %}
+                          <img src="{{product.image.url}}" class="avatar avatar-sm me-3">
+                        {% else %}
+                          <img src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/team-2.jpg" class="avatar avatar-sm me-3">
+                        {% endif %}
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-xs">{{ product.name }}</h6>
+                        <p class="text-xs text-secondary mb-0">{{ product.brand }}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">{{ product.mrp }}</p>
+                   
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                      <p class="text-xs font-weight-bold mb-0">{{ product.purchase_rate }}</p>
+                      
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                      <p class="text-xs font-weight-bold mb-0">{{ product.purchase_quantity }}</p>
+                     
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-normal">{{ product.selling_price }}</span>
+                  </td>
+                  <td class="align-middle">
+                    <a href="{% url 'product-brand-edit' brand.id product.id %}" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                      <i class="material-icons text-sm me-2 ">edit</i>
+                      
+                    </a>
+                    <a href="{% url 'product-brand-delete' brand.id product.id %}" onclick="return confirm('are you sure do you want delete this')" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                      <i class="material-icons text-sm me-2 text-danger">delete</i>
+                    </a>
+                  </td>
+                  
+                </tr>
+              {% endfor %}
+      
+            
+      
+              
+      
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+</main>
+{% endblock content %}

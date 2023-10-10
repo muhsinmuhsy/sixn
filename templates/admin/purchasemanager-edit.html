@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'header.html' %} 
+
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    
+    {% include 'navbar.html' %}
+    
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card my-4">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                            <h6 class="text-white text-capitalize ps-3">Fill the form</h6>
+                        </div>
+                    </div>
+
+                    <div class="delete-button d-flex justify-content-end pt-3">
+                        <!-- <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="{% url 'purchasemanager-delete' purchasemanager.id %}" onclick="return confirm('Do you want to delete this?')">
+                            Delete
+                        </a> -->
+
+                        <button type="button" class="btn btn-block btn-outline-primary mb-0 " data-bs-toggle="modal" data-bs-target="#modal-delete">Delete</button>
+                        <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="modal-delete" aria-hidden="true">
+                            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h6 class="modal-title font-weight-normal" id="modal-title-default">Are you sure</h6>
+                                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                    
+                                    <p>Do you want delete {{purchasemanager.first_name}} {{purchasemanager.last_name}} ? </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <a href="{% url 'purchasemanager-delete' purchasemanager.id %}">
+                                        <button type="button" class="btn bg-gradient-primary">Confirm</button>
+                                    </a>
+                                    
+
+                                    <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="card-body px-0 pb-2">
+
+                        {% include 'alert.html' %}
+                        <form action="{% url 'purchasemanager-edit' purchasemanager.id  %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4"> 
+                                            <input type="text" name="first_name" value="{{ purchasemanager.first_name }}" placeholder="First Name" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <input type="text" name="last_name" value="{{ purchasemanager.last_name }}" placeholder="Last Name" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <input type="file" name="image" accept="image/*" class="form-control"  />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <input type="text" name="place" value="{{ purchasemanager.place }}" placeholder="Place" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <input type="email" name="email" value="{{ purchasemanager.email }}" placeholder="Email" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-outline mb-4">
+                                            <input type="text" name="phone" value="{{ purchasemanager.phone }}" placeholder="Phone" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <!-- <div class="col-sm-6">
+                                        <div class="input-group input-group-dynamic mb-4">
+                                            <input type="text" name="username" value="{{ purchasemanager.username }}" placeholder="username"  class="form-control">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-dynamic mb-4">
+                                            <label class="form-label">Password</label>
+                                            <input type="password" name="password" class="form-control">
+                                        </div>
+                                    </div> -->
+
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</main>
+
+<style>
+    .delete-button{
+        padding-right: 32px;
+    }
+    @media screen and (max-width: 768px) {
+        .delete-button{
+            padding-right: 15px;
+        }
+    }
+</style>
+
+
+
+{% endblock content %}
